@@ -1,11 +1,23 @@
+/**
+ * @file node.cpp
+ * @author Akash Ravindra (aravind2@umd.edu)
+ * @brief 
+ * @version 0.1
+ * @date 2021-11-09
+ * 
+ * @copyright Copyright (c) 2021
+ * 
+ */
 #include "../include/node/node.h"
 #include "../include/util/util.h"
 
-void rwa2::Node::set_wall(int direction, bool is_wall) {
+void rwa2::Node::set_wall(direction direction, bool is_wall) {
   m_walls.at(direction) = is_wall;
 }
 
-bool rwa2::Node::is_wall(int direction) const { return m_walls.at(direction); }
+bool rwa2::Node::is_wall(direction direction) const {
+  return m_walls.at(direction);
+}
 
 int rwa2::Node::compute_number_of_walls() const {
   int weight{0};

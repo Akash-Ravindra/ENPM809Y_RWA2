@@ -1,6 +1,7 @@
 #include "../include/mouse/mouse.h"
 #include "../include/api/api.h"
 #include "../include/util/util.h"
+#include <algorithm>
 #include <string>
 
 void rwa2::Mouse::display_walls() {
@@ -31,8 +32,29 @@ void rwa2::Mouse::display_walls() {
     }
   }
 }
-bool rwa2::Mouse::search_maze(Node cn, Node gn) {
+bool rwa2::Mouse::search_maze(int x, int y) {
+  Node current_node{m_maze.at(x).at(y)};
+  Node next_node;
+  if (!(x == 7 || x == 8) && (y == 7 || y == 8)) {
+    if (stack_of_nodes.empty())
+      stack_of_nodes.push(current_node);
+  } else {
     return true;
+  }
+  if (std::find(list_of_nodes.begin(), list_of_nodes.end(), current_node) !=
+      list_of_nodes.end()) {
+    list_of_nodes.push_back(current_node);
+    look_around(current_node);
+  }
+  if (m_maze.at(x).at(y).is_wall(direction::NORTH)) {
+
+  }
+}
+void rwa2::Mouse::look_around(Node check_node) {
+  check_node.set_wall(direction::NORTH, API::wallFront());
+  check_node.set_wall(direction::WEST, API::wallLeft());
+  check_node.set_wall(direction::EAST, API::wallRight());
+  check_node.set_wall(direction::SOUTH, false);
 }
 void rwa2::Mouse::turn_left() {}
 void rwa2::Mouse::turn_right() {}
