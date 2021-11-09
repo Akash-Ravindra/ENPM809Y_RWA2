@@ -1,9 +1,9 @@
 /**
  * @file node.h
- * @author Zeid Kootbally (zeidk@umd.edu)
- * @brief This file contains a class to represent a node in a maze.
+ * @author Alvina Alex (alvina@umd.edu)
+ * @brief 
  * @version 0.1
- * @date 2021-10-24
+ * @date 2021-11-08
  * 
  * @copyright Copyright (c) 2021
  * 
