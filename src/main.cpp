@@ -1,12 +1,9 @@
-#include <iostream>
 #include <array>
+#include <iostream>
 
 #include "../include/mouse/mouse.h"
 
-
 int main() {
-	rwa2::Mouse mouse;
-	mouse.display_walls();
-
+  rwa2::Mouse mouse;
+  mouse.display_walls();
 }
-

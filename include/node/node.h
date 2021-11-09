@@ -30,6 +30,13 @@ namespace rwa2 {
                 m_walls[i] = false;
             }
         }
+
+        const std::array<int,2>& get_cords(){
+            return m_cords;
+        }
+        void set_cords(std::array<int,2>* new_cords ){
+            m_cords = *new_cords;
+        }
         /**
          * @brief Set the wall of a cell
          *
@@ -53,6 +60,7 @@ namespace rwa2 {
         int compute_number_of_walls() const;
     private:
         std::array<bool, 4> m_walls; //all four walls in a cell
+        std::array<int,2> m_cords;
 
     };
 }

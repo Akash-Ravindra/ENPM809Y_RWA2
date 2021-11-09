@@ -1,12 +1,12 @@
 /**
  * @file mouse.h
- * @author Zeid Kootbally (zeidk@umd.edu)
- * @brief The file contains the Mouse class
+ * @author Akash Ravindra (aravind2@umd.edu)
+ * @brief 
  * @version 0.1
- * @date 2021-10-24
- *
+ * @date 2021-11-08
+ * 
  * @copyright Copyright (c) 2021
- *
+ * 
  */
 
  /*! \mainpage Maze search algorithm
@@ -40,6 +40,8 @@
 #include "../node/node.h"
 #include "../util/util.h"
 #include <array>
+#include <vector>
+#include <stack>
 
 namespace rwa2 {
     /**
@@ -75,7 +77,7 @@ namespace rwa2 {
          * @return true A path is found
          * @return false A path is not found
          */
-        bool search_maze();
+        bool search_maze(Node, Node);
         /**
          * @brief Make the mouse move forward
          *
@@ -91,8 +93,22 @@ namespace rwa2 {
          *
          */
         void turn_right();
-
-
+        /**
+         * @brief Get the nodeList object
+         * 
+         * @return const std::vector<Node>& 
+         */
+        const std::vector<Node>& get_nodeList(){
+            return list_of_nodes;
+        }
+        /**
+         * @brief Get the nodeStack object
+         * 
+         * @return const std::stack<Node>& 
+         */
+        const std::stack<Node>& get_nodeStack(){
+            return stack_of_nodes;
+        }
 
         private:
         static const int m_maze_width{ 16 }; //width of the maze
@@ -101,6 +117,8 @@ namespace rwa2 {
         int m_y; //y position of the robot in the maze
         int m_direction; //direction of the robot in the maze
         std::array<std::array<Node, m_maze_width>, m_maze_height> m_maze; //2D array maze object
+        std::vector<Node> list_of_nodes;
+        std::stack<Node> stack_of_nodes;
     };
 }
 #endif
