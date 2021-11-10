@@ -12,6 +12,9 @@
 
 #ifndef UTIL_H
 #define UTIL_H
+#include <array>
+#include <iostream>
+#include <string>
 
 /*!
  * @brief Definition of an enum to store the different directions

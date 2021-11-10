@@ -39,8 +39,8 @@
 #define MICROMOUSE_H
 
 #include "../node/node.h"
-#include "../util/util.h"
 #include <array>
+#include <iostream>
 #include <stack>
 #include <vector>
 
@@ -56,7 +56,12 @@ public:
    *
    * The robot is always at (0,0) and facing NORTH when the simulator starts
    */
-  Mouse() : m_x{0}, m_y{0}, m_direction{direction::NORTH} {
+  Mouse()
+      : m_x{0}, m_y{0}, m_direction{direction::NORTH},
+        m_look_up_table{{{{NORTH, EAST, SOUTH, WEST}},
+                         {{EAST, SOUTH, WEST, NORTH}},
+                         {{SOUTH, WEST, NORTH, EAST}},
+                         {{WEST, NORTH, EAST, SOUTH}}}} {
     // initialize the maze by placing around the perimeter of the maze
     for (int x = 0; x < m_maze_width; x += 1) {
       for (int y = 0; y < m_maze_height; y += 1) {
@@ -77,7 +82,28 @@ public:
    * @return true A path is found
    * @return false A path is not found
    */
-  bool search_maze(int, int);
+  bool search_maze(std::array<int, 2>);
+
+  /**
+   * @brief Get the nodeList object
+   *
+   * @return const std::vector<Node>&
+   */
+  const std::vector<std::array<int, 2>> &get_nodeList() {
+    return m_list_of_nodes;
+  }
+  /**
+   * @brief Get the nodeStack object
+   *
+   * @return const std::stack<Node>&
+   */
+  const std::stack<std::array<int, 2>> &get_nodeStack() {
+    return m_stack_of_nodes;
+  }
+  void reset_mouse();
+
+private:
+  void log(const std::string &text) { std::cerr << text << std::endl; }
   /**
    * @brief Make the mouse move forward
    *
@@ -94,24 +120,27 @@ public:
    */
   void turn_right();
   /**
+   * @brief Makes the mouse rotate 180 deg CW
+   *
+   */
+  void flip_around();
+  /**
    * @brief Looks around to find walls at the current nodes
    *
    */
-  void look_around(Node);
+  void look_around(std::array<int, 2> *);
   /**
-   * @brief Get the nodeList object
+   * @brief
    *
-   * @return const std::vector<Node>&
    */
-  const std::vector<Node> &get_nodeList() { return list_of_nodes; }
+  void turn_until_direction(direction);
   /**
-   * @brief Get the nodeStack object
+   * @brief
    *
-   * @return const std::stack<Node>&
    */
-  const std::stack<Node> &get_nodeStack() { return stack_of_nodes; }
+  void move_backward();
+  std::array<int, 2> my_neighbor_cords(std::array<int, 2>, direction);
 
-private:
   static const int m_maze_width{16};  // width of the maze
   static const int m_maze_height{16}; // height of the maze
   int m_x;                            // x position of the robot in the maze
@@ -119,8 +148,9 @@ private:
   int m_direction;                    // direction of the robot in the maze
   std::array<std::array<Node, m_maze_width>, m_maze_height>
       m_maze; // 2D array maze object
-  std::vector<Node> list_of_nodes;
-  std::stack<Node> stack_of_nodes;
+  std::vector<std::array<int, 2>> m_list_of_nodes;
+  std::stack<std::array<int, 2>> m_stack_of_nodes;
+  std::array<std::array<direction, 4>, 4> m_look_up_table;
 };
 } // namespace rwa2
 #endif

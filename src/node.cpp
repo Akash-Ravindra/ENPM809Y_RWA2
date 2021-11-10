@@ -1,15 +1,14 @@
 /**
  * @file node.cpp
  * @author Akash Ravindra (aravind2@umd.edu)
- * @brief 
+ * @brief
  * @version 0.1
  * @date 2021-11-09
- * 
+ *
  * @copyright Copyright (c) 2021
- * 
+ *
  */
 #include "../include/node/node.h"
-#include "../include/util/util.h"
 
 void rwa2::Node::set_wall(direction direction, bool is_wall) {
   m_walls.at(direction) = is_wall;
