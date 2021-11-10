@@ -47,12 +47,12 @@ bool rwa2::Mouse::search_maze(std::array<int, 2> current_node) {
   std::array<int, 2> next_node{};
   std::array<int, 2> previous_node{};
   if (!m_stack_of_nodes.empty())
-    previous_node = m_stack_of_nodes.;
+    previous_node = m_stack_of_nodes.top();
   log("Entered Node");
   if (!((x == 7 || x == 8) && (y == 7 || y == 8))) {
-    if (m_stack_of_nodes.empty())
-      m_stack_of_nodes.push(current_node);
+    m_stack_of_nodes.push(current_node);
   } else {
+    m_stack_of_nodes.push(current_node);
     return true;
   }
   if (!(std::find(m_list_of_nodes.begin(), m_list_of_nodes.end(),
@@ -65,7 +65,7 @@ bool rwa2::Mouse::search_maze(std::array<int, 2> current_node) {
       previous_node != my_neighbor_cords(current_node, direction::NORTH)) {
     log("No wall North");
     next_node = {x, y + 1};
-    m_stack_of_nodes.push(next_node);
+    // m_stack_of_nodes.push(next_node);
     turn_until_direction(direction::NORTH);
     move_forward();
     if (search_maze(next_node))
@@ -75,7 +75,7 @@ bool rwa2::Mouse::search_maze(std::array<int, 2> current_node) {
       previous_node != my_neighbor_cords(current_node, direction::EAST)) {
     log("No wall East");
     next_node = {x + 1, y};
-    m_stack_of_nodes.push(next_node);
+    // m_stack_of_nodes.push(next_node);
     turn_until_direction(direction::EAST);
     move_forward();
     if (search_maze(next_node))
@@ -85,7 +85,7 @@ bool rwa2::Mouse::search_maze(std::array<int, 2> current_node) {
       previous_node != my_neighbor_cords(current_node, direction::SOUTH)) {
     log("No wall South");
     next_node = {x, y - 1};
-    m_stack_of_nodes.push(next_node);
+    // m_stack_of_nodes.push(next_node);
     turn_until_direction(direction::SOUTH);
     move_forward();
     if (search_maze(next_node))
@@ -95,7 +95,7 @@ bool rwa2::Mouse::search_maze(std::array<int, 2> current_node) {
       previous_node != my_neighbor_cords(current_node, direction::WEST)) {
     log("No wall West");
     next_node = {x - 1, y};
-    m_stack_of_nodes.push(next_node);
+    // m_stack_of_nodes.push(next_node);
     turn_until_direction(direction::WEST);
     move_forward();
     if (search_maze(next_node))
