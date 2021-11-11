@@ -29,8 +29,11 @@ public:
     }
   }
 
-  const std::array<int, 2> &get_cords() { return m_cords; }
+  const std::array<int, 2> get_cords() { return m_cords; }
   void set_cords(std::array<int, 2> *new_cords) { m_cords = *new_cords; }
+  void set_cords(std::array<int, 2> new_cords) { m_cords = new_cords; }
+  const bool get_visited() { return m_visited; }
+  void set_visited(bool state) { m_visited = state; }
   /**
    * @brief Set the wall of a cell
    *
@@ -55,7 +58,8 @@ public:
 
 private:
   std::array<bool, 4> m_walls; // all four walls in a cell
-  std::array<int, 2> m_cords;
+  std::array<int, 2> m_cords{};
+  bool m_visited{false};
 };
 } // namespace rwa2
 #endif

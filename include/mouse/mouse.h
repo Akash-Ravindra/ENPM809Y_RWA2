@@ -65,6 +65,7 @@ public:
     // initialize the maze by placing around the perimeter of the maze
     for (int x = 0; x < m_maze_width; x += 1) {
       for (int y = 0; y < m_maze_height; y += 1) {
+        m_maze.at(x).at(y).set_cords({x, y});
         m_maze.at(x).at(y).set_wall(direction::NORTH, (y == m_maze_height - 1));
         m_maze.at(x).at(y).set_wall(direction::EAST, (x == m_maze_width - 1));
         m_maze.at(x).at(y).set_wall(direction::SOUTH, (y == 0));
@@ -82,7 +83,7 @@ public:
    * @return true A path is found
    * @return false A path is not found
    */
-  bool search_maze(std::array<int, 2>);
+  bool search_maze(Node *);
 
   /**
    * @brief Get the nodeList object
@@ -97,10 +98,10 @@ public:
    *
    * @return const std::stack<Node>&
    */
-  const std::stack<std::array<int, 2>> &get_nodeStack() {
-    return m_stack_of_nodes;
-  }
+  const std::stack<Node *> &get_nodeStack() { return m_stack_of_nodes; }
   void reset_mouse();
+  void display_path();
+  Node *get_home_node() { return &m_maze.at(0).at(0); };
 
 private:
   void log(const std::string &text) { std::cerr << text << std::endl; }
@@ -128,7 +129,7 @@ private:
    * @brief Looks around to find walls at the current nodes
    *
    */
-  void look_around(std::array<int, 2> *);
+  void look_around(Node *);
   /**
    * @brief
    *
@@ -138,8 +139,9 @@ private:
    * @brief
    *
    */
-  void move_backward();
+  void move_backward(Node *, Node *);
   std::array<int, 2> my_neighbor_cords(std::array<int, 2>, direction);
+  bool is_neighbor_visited(Node *, direction);
 
   static const int m_maze_width{16};  // width of the maze
   static const int m_maze_height{16}; // height of the maze
@@ -149,7 +151,7 @@ private:
   std::array<std::array<Node, m_maze_width>, m_maze_height>
       m_maze; // 2D array maze object
   std::vector<std::array<int, 2>> m_list_of_nodes;
-  std::stack<std::array<int, 2>> m_stack_of_nodes;
+  std::stack<Node *> m_stack_of_nodes;
   std::array<std::array<direction, 4>, 4> m_look_up_table;
 };
 } // namespace rwa2
