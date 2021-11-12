@@ -30,3 +30,30 @@ void rwa2::Mouse::display_walls() {
         }
     }
 }
+void rwa2::Mouse::move_forward(int s=1){
+    API::moveForward(s);
+}
+
+void rwa2::Mouse::turn_left(){
+    //update m_direction
+    API::turnLeft();
+}
+void rwa2::Mouse::turn_right(){
+    //update m_direction
+    API::turnRight();
+}
+void rwa2::Mouse::move_backward(){
+    turn_left();
+    turn_left();
+    move_forward();
+}
+void rwa2::Mouse::turn_until(direction heading){
+ //compare heading and m_direction
+ //check if already true
+
+
+ //turn in direction
+ //check again 
+ //if false run turn_until
+ //else return
+}

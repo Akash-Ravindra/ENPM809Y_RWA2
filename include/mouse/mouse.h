@@ -62,6 +62,7 @@ namespace rwa2 {
                     m_maze.at(x).at(y).set_wall(direction::EAST, (x == m_maze_width - 1));
                     m_maze.at(x).at(y).set_wall(direction::SOUTH, (y == 0));
                     m_maze.at(x).at(y).set_wall(direction::WEST, (x == 0));
+                    m_maze.at(x).at(y).set_coords({x,y});
                 }
             }
         }
@@ -77,10 +78,10 @@ namespace rwa2 {
          */
         bool search_maze();
         /**
-         * @brief Make the mouse move forward
+         * @brief Make the mouse move forward by s cells (Default 1 step)
          *
          */
-        void move_forward();
+        void move_forward(int s);
         /**
          * @brief Make the mouse rotate 90 deg CCW
          *
@@ -91,6 +92,16 @@ namespace rwa2 {
          *
          */
         void turn_right();
+        /**
+         * @brief Make the mouse move backward i.e. 180 deg rotation
+         * 
+         */
+        void move_backward();
+        /**
+         * @brief Make the mouse turn until it aligns in the specified direction
+         * 
+         */
+        void turn_until(direction);
 
 
 

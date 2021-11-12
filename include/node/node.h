@@ -14,6 +14,7 @@
 #define NODE_H
 
 #include <array>
+#include <vector>
 
 namespace rwa2 {
     /**
@@ -53,6 +54,7 @@ namespace rwa2 {
         int compute_number_of_walls() const;
     private:
         std::array<bool, 4> m_walls; //all four walls in a cell
+        std::array<int, 2>m_coordinates;// Coordinates of node
 
     };
 }
