@@ -40,6 +40,8 @@
 #include "../node/node.h"
 #include "../util/util.h"
 #include <array>
+#include <stack>
+#include <vector>
 
 namespace rwa2 {
     /**
@@ -66,6 +68,7 @@ namespace rwa2 {
                 }
             }
         }
+
         // this method visually sets the walls in the simulator
         void display_walls();
         //IMPLEMENT THE METHODS BELOW
@@ -76,7 +79,9 @@ namespace rwa2 {
          * @return true A path is found
          * @return false A path is not found
          */
-        bool search_maze();
+        bool search_maze(Node*);
+
+        private:
         /**
          * @brief Make the mouse move forward by s cells (Default 1 step)
          *
@@ -103,15 +108,21 @@ namespace rwa2 {
          */
         void turn_until(direction);
 
+        void look_around(Node*);
 
 
-        private:
+
         static const int m_maze_width{ 16 }; //width of the maze
         static const int m_maze_height{ 16 };//height of the maze
         int m_x; //x position of the robot in the maze
         int m_y; //y position of the robot in the maze
         int m_direction; //direction of the robot in the maze
         std::array<std::array<Node, m_maze_width>, m_maze_height> m_maze; //2D array maze object
+        std::array<std::array<int,4>,4>LUT{{{{0,1,2,3}},{{1,2,3,0}},{{2,3,0,1}},{{3,0,1,2}}}};
+        std::stack<Node*> m_stack;
+        std::vector<std::array<int,2> > m_visited;
+        std::array<int,2> m_goal{7,7};
+
     };
 }
 #endif

@@ -3,6 +3,8 @@
 #include "../include/util/util.h"
 #include <string>
 
+
+
 void rwa2::Mouse::display_walls() {
     for (int x = 0; x < m_maze_width; x += 1) {
         for (int y = 0; y < m_maze_height; y += 1) {
@@ -35,12 +37,13 @@ void rwa2::Mouse::move_forward(int s=1){
 }
 
 void rwa2::Mouse::turn_left(){
-    //update m_direction
     API::turnLeft();
+    m_direction=(m_direction-1<0)? m_direction=3:m_direction-=1;
 }
 void rwa2::Mouse::turn_right(){
     //update m_direction
     API::turnRight();
+    m_direction=(m_direction+1>3)?m_direction=0:m_direction+=1;
 }
 void rwa2::Mouse::move_backward(){
     turn_left();
@@ -49,11 +52,30 @@ void rwa2::Mouse::move_backward(){
 }
 void rwa2::Mouse::turn_until(direction heading){
  //compare heading and m_direction
+ if (heading==m_direction){
+     return ;
+ }
+ else{
+     turn_left();
+     return turn_until(heading);
+ }
  //check if already true
-
-
  //turn in direction
  //check again 
  //if false run turn_until
  //else return
+}
+void rwa2::Mouse::look_around(Node* m){
+    m->set_wall(LUT.at(m_direction).at(0),API::wallFront());
+    m->set_wall(LUT.at(m_direction).at(1),API::wallRight());
+    m->set_wall(LUT.at(m_direction).at(3),API::wallLeft());
+    m->set_wall(LUT.at(m_direction).at(2),false);
+}
+bool rwa2::Mouse::search_maze(Node* c_node){
+    if (c_node->get_coords()!=m_goal){
+        if(m_stack.empty())
+        {
+            
+        }
+    }
 }

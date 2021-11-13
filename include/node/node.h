@@ -31,6 +31,12 @@ namespace rwa2 {
                 m_walls[i] = false;
             }
         }
+        std::array<int ,2> get_coords(){
+            return m_coordinates;
+        }
+        std::array<int,2> set_coords(std::array<int,2> cords){
+            m_coordinates = cords;
+        }
         /**
          * @brief Set the wall of a cell
          *
@@ -52,6 +58,7 @@ namespace rwa2 {
          * @return int Number of walls surrounding a node
          */
         int compute_number_of_walls() const;
+
     private:
         std::array<bool, 4> m_walls; //all four walls in a cell
         std::array<int, 2>m_coordinates;// Coordinates of node
