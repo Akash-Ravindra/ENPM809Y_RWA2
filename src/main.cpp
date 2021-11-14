@@ -21,9 +21,9 @@ int main() {
   rwa2::Mouse mouse;
   mouse.display_walls(NULL);
   mouse.reset_mouse();
-  // mouse.move_forward();
-  if(mouse.search_maze(mouse.get_home_node())){
-    mouse.display_walls(NULL);
+  if (mouse.search_maze(mouse.get_home_node())) {
     mouse.display_path();
-  }
+    mouse.maze_runner(mouse.get_nodeStack());
+  } else
+    log("Maze can not be solved");
 }

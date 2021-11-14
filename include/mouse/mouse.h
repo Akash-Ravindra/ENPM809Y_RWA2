@@ -57,13 +57,13 @@ public:
    * The robot is always at (0,0) and facing NORTH when the simulator starts
    */
   Mouse()
-      : m_x{0}, m_y{0}, m_direction{direction::NORTH},
-        //lookup table: The Global orientation w.r.t Mouse orientation
-        //Global---|Front|Right|Back|Left|
-        //N--------|N    |E    |S   |W   |
-        //E--------|E    |S    |W   |N   |
-        //S--------|S    |W    |N   |E   |
-        //W--------|W    |N    |E   |S   |
+      : m_direction{direction::NORTH},
+        // lookup table: The Global orientation w.r.t Mouse orientation
+        // Global---|Front|Right|Back|Left|
+        // N--------|N    |E    |S   |W   |
+        // E--------|E    |S    |W   |N   |
+        // S--------|S    |W    |N   |E   |
+        // W--------|W    |N    |E   |S   |
         m_look_up_table{{{{NORTH, EAST, SOUTH, WEST}},
                          {{EAST, SOUTH, WEST, NORTH}},
                          {{SOUTH, WEST, NORTH, EAST}},
@@ -79,7 +79,12 @@ public:
       }
     }
   }
-  // this method visually sets the walls in the simulator
+  /**
+   * @brief  This method visually sets the walls in the simulator
+   * @details Uses the current node to set the walls and the text at the node.
+   * If nothing is provided it applies these changes to the whole maze
+   *
+   */
   void display_walls(Node *);
   // IMPLEMENT THE METHODS BELOW
   // Note: Come up with your own parameters and implementations
@@ -106,46 +111,49 @@ public:
    */
   const std::stack<Node *> &get_nodeStack() { return m_stack_of_nodes; }
   /**
-   * @brief 
-   * 
+   * @brief Used to run the mouse from home to goal based on the provided stack
+   *
    */
-  void run_maze(std::stack<Node*>);
+  void maze_runner(std::stack<Node *>);
 
   /**
-   * @brief 
-   * 
+   * @brief When called resents the mouse to the home poisiton and also the
+   * m_direction values to NORTH
+   *
    */
   void reset_mouse();
   /**
    * @brief  Displays the path the mouse has traversed
    * @details As the mouse traverses, It sets color to the nodes travelled.
-   * 
+   *
    */
   void display_path();
   /**
    * @brief Get the home node object
    * @details The home node/start point is declared to be at the origin
-   * @return Node* 
+   * @return Node*
    */
   Node *get_home_node() { return &m_maze.at(0).at(0); };
   /**
    * @brief Get the goal position object
-   * @details The goal position coordinates are returned when this function is called.
-   * @return const std::array<int,2> 
+   * @details The goal position coordinates are returned when this function is
+   * called.
+   * @return const std::array<int,2>
    */
-  const std::array<int,2> get_goal_position(){return m_goal_position;}
+  const std::array<int, 2> get_goal_position() { return m_goal_position; }
   /**
    * @brief Set the goal position object
-   * @details The goal position coordinates can be changed and reset if the user requires. The default goal is set to be (7,7)
-   * @param gp 
+   * @details The goal position coordinates can be changed and reset if the user
+   * requires. The default goal is set to be (7,7)
+   * @param gp
    */
-  void set_goal_position(std::array<int,2> gp){m_goal_position = gp;}
+  void set_goal_position(std::array<int, 2> gp) { m_goal_position = gp; }
 
 private:
   /**
    * @brief Displays text on the right pane of the maze display
-   * @details The function is used to display text on the maze application. 
-   * @param text 
+   * @details The function is used to display text on the maze application.
+   * @param text
    */
   void log(const std::string &text) { std::cerr << text << std::endl; }
   /**
@@ -164,46 +172,59 @@ private:
   void turn_right();
   /**
    * @brief Makes the mouse rotate 180 deg CW
-   * @details This is used when the mouse reaches a completely blocked node and needs to backtrack by taking a 180 degree flip.
+   * @details This is used when the mouse reaches a completely blocked node and
+   * needs to backtrack by taking a 180 degree flip.
    *
    */
   void flip_around();
   /**
    * @brief Looks around to find walls at the current nodes
-   * @details It uses a Lookup table to align the the global position w.r.t to the mouse positioning.
+   * @details It uses a Lookup table to align the the global position w.r.t to
+   * the mouse positioning.
    */
   void look_around(Node *);
   /**
-   * @brief Turns the mouse until it alignes the mouse direction to the required direction (argument)
-   * @details The mouse direction i.e. m_direction is turned by 90 degree until it reaches the the direction passed in the argument.
+   * @brief Turns the mouse until it alignes the mouse direction to the required
+   * direction (argument)
+   * @details The mouse direction i.e. m_direction is turned by 90 degree until
+   * it reaches the the direction passed in the argument.
    */
   void turn_until_direction(direction);
   /**
-   * @brief Moves the mouse when it reaches a dead end
-   * @details Moves the mouse to the last element popped from the stack 
+   * @brief Moves the mouse based on the two supplied nodes
+   * @details Need to provide the current node and the node that it is supposed
+   * to move to.
    */
-  void move_backward(Node *, Node *);
-  std::array<int, 2> my_neighbor_cords(std::array<int, 2>, direction);//array of neighbour coordinates
+  void move_to(Node *, Node *);
   /**
    * @brief Checks if the neighbour node has been visited.
-   * @details Checks if the North,East,South and West Nodes have been visited and gets the current node from the m_visited list.
-   * 
-   * @return true 
-   * @return false 
+   * @details Checks if the North,East,South and West Nodes have been visited
+   * and gets the current node from the m_visited list.
+   *
+   * @return true
+   * @return false
    */
   bool is_neighbor_visited(Node *, direction);
 
   static const int m_maze_width{16};  // width of the maze
   static const int m_maze_height{16}; // height of the maze
-  int m_x;                            // x position of the robot in the maze
-  int m_y;                            // y position of the robot in the maze
   int m_direction;                    // direction of the robot in the maze
-  std::array<std::array<Node, m_maze_width>, m_maze_height> 
-      m_maze; // 2D array maze object
-  std::vector<std::array<int, 2>> m_list_of_nodes; //2D array of list of nodes
-  std::stack<Node *> m_stack_of_nodes;//Stack of nodes of type Node
-  std::array<std::array<direction, 4>, 4> m_look_up_table;// Lookup table for the look_Around function. Gives the relative orientation of global w.r.t to the mouse's orientation.
-  std::array<int,2> m_goal_position{7,7};//Position of the goal, default value is (7,7). Can be changed by the user using the getter and setter.
+  std::array<std::array<Node, m_maze_width>, m_maze_height>
+      m_maze;                                      // 2D array maze object
+  std::vector<std::array<int, 2>> m_list_of_nodes; // 2D array of list of nodes
+  std::stack<Node *> m_stack_of_nodes; // Stack of nodes of type Node
+  /**
+   * @brief // Lookup table for the look_Around function. Gives the relative
+   * orientation of global w.r.t to the mouse's orientation.
+   *
+   */
+  std::array<std::array<direction, 4>, 4> m_look_up_table;
+  /**
+   * @brief // Position of the goal, default value is (7,7). Can be changed by
+   * the user using the getter and setter.
+   *
+   */
+  std::array<int, 2> m_goal_position{7, 7};
 };
 } // namespace rwa2
 #endif
