@@ -1,5 +1,5 @@
-\hypertarget{classrwa2_1_1_mouse}{}\section{rwa2\+:\+:Mouse Class Reference}
-\label{classrwa2_1_1_mouse}\index{rwa2\+::\+Mouse@{rwa2\+::\+Mouse}}
+\hypertarget{classrwa2_1_1_mouse}{}\doxysection{rwa2\+::Mouse Class Reference}
+\label{classrwa2_1_1_mouse}\index{rwa2::Mouse@{rwa2::Mouse}}
 
 
 This class is used to compute a path and execute the path.  
@@ -9,69 +9,204 @@ This class is used to compute a path and execute the path.
 
 {\ttfamily \#include $<$mouse.\+h$>$}
 
-\subsection*{Public Member Functions}
+\doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classrwa2_1_1_mouse_a048dffae3aaa3a6ddc2c6cc4741a097c}{Mouse} ()
+\mbox{\hyperlink{classrwa2_1_1_mouse_a048dffae3aaa3a6ddc2c6cc4741a097c}{Mouse}} ()
 \begin{DoxyCompactList}\small\item\em Construct a new Micro\+Mouse object. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classrwa2_1_1_mouse_abbcc99c41fd073426fdfd790f947956e}\label{classrwa2_1_1_mouse_abbcc99c41fd073426fdfd790f947956e}} 
-void {\bfseries display\+\_\+walls} ()
-\item 
-bool \hyperlink{classrwa2_1_1_mouse_a789be287a432bafc903c97396a014d7d}{search\+\_\+maze} ()
+void \mbox{\hyperlink{classrwa2_1_1_mouse_ae97b63d1b0c73a07a957fc36a1c0754c}{display\+\_\+walls}} (\mbox{\hyperlink{classrwa2_1_1_node}{Node}} $\ast$)
+\begin{DoxyCompactList}\small\item\em This method visually sets the walls in the simulator. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classrwa2_1_1_mouse_a12fb73a212e776342b17b6e35527b6e0}{search\+\_\+maze}} (\mbox{\hyperlink{classrwa2_1_1_node}{Node}} $\ast$)
 \begin{DoxyCompactList}\small\item\em Implement D\+FS to compute a path between 2 nodes in a maze. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classrwa2_1_1_mouse_afc6e0d56e3a777c05efa3929eb256e0a}\label{classrwa2_1_1_mouse_afc6e0d56e3a777c05efa3929eb256e0a}} 
-void \hyperlink{classrwa2_1_1_mouse_afc6e0d56e3a777c05efa3929eb256e0a}{move\+\_\+forward} ()
-\begin{DoxyCompactList}\small\item\em Make the mouse move forward. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classrwa2_1_1_mouse_a5748e94e740432c334d15364fb476919}\label{classrwa2_1_1_mouse_a5748e94e740432c334d15364fb476919}} 
-void \hyperlink{classrwa2_1_1_mouse_a5748e94e740432c334d15364fb476919}{turn\+\_\+left} ()
-\begin{DoxyCompactList}\small\item\em Make the mouse rotate 90 deg C\+CW. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classrwa2_1_1_mouse_ac929127d86fc4a41d1e216968b1dae20}\label{classrwa2_1_1_mouse_ac929127d86fc4a41d1e216968b1dae20}} 
-void \hyperlink{classrwa2_1_1_mouse_ac929127d86fc4a41d1e216968b1dae20}{turn\+\_\+right} ()
-\begin{DoxyCompactList}\small\item\em Make the mouse rotate 90 deg CW. \end{DoxyCompactList}\end{DoxyCompactItemize}
+const std\+::vector$<$ std\+::array$<$ int, 2 $>$ $>$ \& \mbox{\hyperlink{classrwa2_1_1_mouse_a7e91166c5fb9d87e4e4b8eaf17a97db7}{get\+\_\+node\+List}} ()
+\begin{DoxyCompactList}\small\item\em Get the node\+List object. \end{DoxyCompactList}\item 
+const std\+::stack$<$ \mbox{\hyperlink{classrwa2_1_1_node}{Node}} $\ast$ $>$ \& \mbox{\hyperlink{classrwa2_1_1_mouse_a4fa1c5acdc72c503d0d41bf3dc37bd8c}{get\+\_\+node\+Stack}} ()
+\begin{DoxyCompactList}\small\item\em Get the node\+Stack object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrwa2_1_1_mouse_aa0130f1b776377e8bbfe046da18fac57}{maze\+\_\+runner}} (std\+::stack$<$ \mbox{\hyperlink{classrwa2_1_1_node}{Node}} $\ast$ $>$)
+\begin{DoxyCompactList}\small\item\em Used to run the mouse from home to goal based on the provided stack. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrwa2_1_1_mouse_a0e304e0177dd922554a022ab29baed1f}{reset\+\_\+mouse}} ()
+\begin{DoxyCompactList}\small\item\em When called resents the mouse to the home poisiton and also the m\+\_\+direction values to N\+O\+R\+TH. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrwa2_1_1_mouse_a08e110d2ec418d0fb70c74d6cf89d0cf}{display\+\_\+path}} ()
+\begin{DoxyCompactList}\small\item\em Displays the path the mouse has traversed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classrwa2_1_1_node}{Node}} $\ast$ \mbox{\hyperlink{classrwa2_1_1_mouse_a4c876c74df71c81e8136b5db6a974f8b}{get\+\_\+home\+\_\+node}} ()
+\begin{DoxyCompactList}\small\item\em Get the home node object. \end{DoxyCompactList}\item 
+const std\+::array$<$ int, 2 $>$ \mbox{\hyperlink{classrwa2_1_1_mouse_aa72e15de03e66273f49c314825617ecf}{get\+\_\+goal\+\_\+position}} ()
+\begin{DoxyCompactList}\small\item\em Get the goal position object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrwa2_1_1_mouse_a038f9d7b0481dbe61671c7dfa4dbcfae}{set\+\_\+goal\+\_\+position}} (std\+::array$<$ int, 2 $>$ gp)
+\begin{DoxyCompactList}\small\item\em Set the goal position object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrwa2_1_1_mouse_a6bbb329ddb93efbab9f7c91134cc1d44}\label{classrwa2_1_1_mouse_a6bbb329ddb93efbab9f7c91134cc1d44}} 
+void {\bfseries log} (const std\+::string \&text)
+\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 This class is used to compute a path and execute the path. 
 
-\subsection{Constructor \& Destructor Documentation}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classrwa2_1_1_mouse_a048dffae3aaa3a6ddc2c6cc4741a097c}\label{classrwa2_1_1_mouse_a048dffae3aaa3a6ddc2c6cc4741a097c}} 
-\index{rwa2\+::\+Mouse@{rwa2\+::\+Mouse}!Mouse@{Mouse}}
-\index{Mouse@{Mouse}!rwa2\+::\+Mouse@{rwa2\+::\+Mouse}}
-\subsubsection{\texorpdfstring{Mouse()}{Mouse()}}
+\index{rwa2::Mouse@{rwa2::Mouse}!Mouse@{Mouse}}
+\index{Mouse@{Mouse}!rwa2::Mouse@{rwa2::Mouse}}
+\doxysubsubsection{\texorpdfstring{Mouse()}{Mouse()}}
 {\footnotesize\ttfamily rwa2\+::\+Mouse\+::\+Mouse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 Construct a new Micro\+Mouse object. 
 
-The robot is always at (0,0) and facing N\+O\+R\+TH when the simulator starts Here is the call graph for this function\+:\nopagebreak
+The robot is always at (0,0) and facing N\+O\+R\+TH when the simulator starts 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classrwa2_1_1_mouse_a08e110d2ec418d0fb70c74d6cf89d0cf}\label{classrwa2_1_1_mouse_a08e110d2ec418d0fb70c74d6cf89d0cf}} 
+\index{rwa2::Mouse@{rwa2::Mouse}!display\_path@{display\_path}}
+\index{display\_path@{display\_path}!rwa2::Mouse@{rwa2::Mouse}}
+\doxysubsubsection{\texorpdfstring{display\_path()}{display\_path()}}
+{\footnotesize\ttfamily void rwa2\+::\+Mouse\+::display\+\_\+path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the path the mouse has traversed. 
+
+As the mouse traverses, It sets color to the nodes travelled. \mbox{\Hypertarget{classrwa2_1_1_mouse_ae97b63d1b0c73a07a957fc36a1c0754c}\label{classrwa2_1_1_mouse_ae97b63d1b0c73a07a957fc36a1c0754c}} 
+\index{rwa2::Mouse@{rwa2::Mouse}!display\_walls@{display\_walls}}
+\index{display\_walls@{display\_walls}!rwa2::Mouse@{rwa2::Mouse}}
+\doxysubsubsection{\texorpdfstring{display\_walls()}{display\_walls()}}
+{\footnotesize\ttfamily void rwa2\+::\+Mouse\+::display\+\_\+walls (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrwa2_1_1_node}{Node}} $\ast$}]{current\+Node }\end{DoxyParamCaption})}
+
+
+
+This method visually sets the walls in the simulator. 
+
+Uses the current node to set the walls and the text at the node. If nothing is provided it applies these changes to the whole maze Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classrwa2_1_1_mouse_a048dffae3aaa3a6ddc2c6cc4741a097c_cgraph}
+\includegraphics[width=350pt]{classrwa2_1_1_mouse_ae97b63d1b0c73a07a957fc36a1c0754c_cgraph}
 \end{center}
 \end{figure}
+\mbox{\Hypertarget{classrwa2_1_1_mouse_aa72e15de03e66273f49c314825617ecf}\label{classrwa2_1_1_mouse_aa72e15de03e66273f49c314825617ecf}} 
+\index{rwa2::Mouse@{rwa2::Mouse}!get\_goal\_position@{get\_goal\_position}}
+\index{get\_goal\_position@{get\_goal\_position}!rwa2::Mouse@{rwa2::Mouse}}
+\doxysubsubsection{\texorpdfstring{get\_goal\_position()}{get\_goal\_position()}}
+{\footnotesize\ttfamily const std\+::array$<$int, 2$>$ rwa2\+::\+Mouse\+::get\+\_\+goal\+\_\+position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
-\subsection{Member Function Documentation}
-\mbox{\Hypertarget{classrwa2_1_1_mouse_a789be287a432bafc903c97396a014d7d}\label{classrwa2_1_1_mouse_a789be287a432bafc903c97396a014d7d}} 
-\index{rwa2\+::\+Mouse@{rwa2\+::\+Mouse}!search\+\_\+maze@{search\+\_\+maze}}
-\index{search\+\_\+maze@{search\+\_\+maze}!rwa2\+::\+Mouse@{rwa2\+::\+Mouse}}
-\subsubsection{\texorpdfstring{search\+\_\+maze()}{search\_maze()}}
-{\footnotesize\ttfamily bool rwa2\+::\+Mouse\+::search\+\_\+maze (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get the goal position object. 
+
+The goal position coordinates are returned when this function is called. \begin{DoxyReturn}{Returns}
+const std\+::array$<$int,2$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrwa2_1_1_mouse_a4c876c74df71c81e8136b5db6a974f8b}\label{classrwa2_1_1_mouse_a4c876c74df71c81e8136b5db6a974f8b}} 
+\index{rwa2::Mouse@{rwa2::Mouse}!get\_home\_node@{get\_home\_node}}
+\index{get\_home\_node@{get\_home\_node}!rwa2::Mouse@{rwa2::Mouse}}
+\doxysubsubsection{\texorpdfstring{get\_home\_node()}{get\_home\_node()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classrwa2_1_1_node}{Node}}$\ast$ rwa2\+::\+Mouse\+::get\+\_\+home\+\_\+node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the home node object. 
+
+The home node/start point is declared to be at the origin \begin{DoxyReturn}{Returns}
+Node$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrwa2_1_1_mouse_a7e91166c5fb9d87e4e4b8eaf17a97db7}\label{classrwa2_1_1_mouse_a7e91166c5fb9d87e4e4b8eaf17a97db7}} 
+\index{rwa2::Mouse@{rwa2::Mouse}!get\_nodeList@{get\_nodeList}}
+\index{get\_nodeList@{get\_nodeList}!rwa2::Mouse@{rwa2::Mouse}}
+\doxysubsubsection{\texorpdfstring{get\_nodeList()}{get\_nodeList()}}
+{\footnotesize\ttfamily const std\+::vector$<$std\+::array$<$int, 2$>$ $>$\& rwa2\+::\+Mouse\+::get\+\_\+node\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the node\+List object. 
+
+Gives the list of nodes which the mouse has visited. \begin{DoxyReturn}{Returns}
+const std\+::vector$<$\+Node$>$\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrwa2_1_1_mouse_a4fa1c5acdc72c503d0d41bf3dc37bd8c}\label{classrwa2_1_1_mouse_a4fa1c5acdc72c503d0d41bf3dc37bd8c}} 
+\index{rwa2::Mouse@{rwa2::Mouse}!get\_nodeStack@{get\_nodeStack}}
+\index{get\_nodeStack@{get\_nodeStack}!rwa2::Mouse@{rwa2::Mouse}}
+\doxysubsubsection{\texorpdfstring{get\_nodeStack()}{get\_nodeStack()}}
+{\footnotesize\ttfamily const std\+::stack$<$\mbox{\hyperlink{classrwa2_1_1_node}{Node}} $\ast$$>$\& rwa2\+::\+Mouse\+::get\+\_\+node\+Stack (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the node\+Stack object. 
+
+Gives the stack of nodes the mouse has traversed. \begin{DoxyReturn}{Returns}
+const std\+::stack$<$\+Node$>$\& 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrwa2_1_1_mouse_aa0130f1b776377e8bbfe046da18fac57}\label{classrwa2_1_1_mouse_aa0130f1b776377e8bbfe046da18fac57}} 
+\index{rwa2::Mouse@{rwa2::Mouse}!maze\_runner@{maze\_runner}}
+\index{maze\_runner@{maze\_runner}!rwa2::Mouse@{rwa2::Mouse}}
+\doxysubsubsection{\texorpdfstring{maze\_runner()}{maze\_runner()}}
+{\footnotesize\ttfamily void rwa2\+::\+Mouse\+::maze\+\_\+runner (\begin{DoxyParamCaption}\item[{std\+::stack$<$ \mbox{\hyperlink{classrwa2_1_1_node}{Node}} $\ast$ $>$}]{maze\+\_\+stack }\end{DoxyParamCaption})}
+
+
+
+Used to run the mouse from home to goal based on the provided stack. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrwa2_1_1_mouse_aa0130f1b776377e8bbfe046da18fac57_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classrwa2_1_1_mouse_a0e304e0177dd922554a022ab29baed1f}\label{classrwa2_1_1_mouse_a0e304e0177dd922554a022ab29baed1f}} 
+\index{rwa2::Mouse@{rwa2::Mouse}!reset\_mouse@{reset\_mouse}}
+\index{reset\_mouse@{reset\_mouse}!rwa2::Mouse@{rwa2::Mouse}}
+\doxysubsubsection{\texorpdfstring{reset\_mouse()}{reset\_mouse()}}
+{\footnotesize\ttfamily void rwa2\+::\+Mouse\+::reset\+\_\+mouse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+When called resents the mouse to the home poisiton and also the m\+\_\+direction values to N\+O\+R\+TH. 
+
+\mbox{\Hypertarget{classrwa2_1_1_mouse_a12fb73a212e776342b17b6e35527b6e0}\label{classrwa2_1_1_mouse_a12fb73a212e776342b17b6e35527b6e0}} 
+\index{rwa2::Mouse@{rwa2::Mouse}!search\_maze@{search\_maze}}
+\index{search\_maze@{search\_maze}!rwa2::Mouse@{rwa2::Mouse}}
+\doxysubsubsection{\texorpdfstring{search\_maze()}{search\_maze()}}
+{\footnotesize\ttfamily bool rwa2\+::\+Mouse\+::search\+\_\+maze (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classrwa2_1_1_node}{Node}} $\ast$}]{current\+\_\+node }\end{DoxyParamCaption})}
 
 
 
 Implement D\+FS to compute a path between 2 nodes in a maze. 
 
-\begin{DoxyReturn}{Returns}
+description \begin{DoxyReturn}{Returns}
 true A path is found 
 
 false A path is not found 
 \end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classrwa2_1_1_mouse_a12fb73a212e776342b17b6e35527b6e0_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classrwa2_1_1_mouse_a038f9d7b0481dbe61671c7dfa4dbcfae}\label{classrwa2_1_1_mouse_a038f9d7b0481dbe61671c7dfa4dbcfae}} 
+\index{rwa2::Mouse@{rwa2::Mouse}!set\_goal\_position@{set\_goal\_position}}
+\index{set\_goal\_position@{set\_goal\_position}!rwa2::Mouse@{rwa2::Mouse}}
+\doxysubsubsection{\texorpdfstring{set\_goal\_position()}{set\_goal\_position()}}
+{\footnotesize\ttfamily void rwa2\+::\+Mouse\+::set\+\_\+goal\+\_\+position (\begin{DoxyParamCaption}\item[{std\+::array$<$ int, 2 $>$}]{gp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the goal position object. 
+
+The goal position coordinates can be changed and reset if the user requires. The default goal is set to be (7,7) 
+\begin{DoxyParams}{Parameters}
+{\em gp} & \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-include/mouse/\hyperlink{mouse_8h}{mouse.\+h}\item 
-src/mouse.\+cpp\end{DoxyCompactItemize}
+include/mouse/\mbox{\hyperlink{mouse_8h}{mouse.\+h}}\item 
+src/\mbox{\hyperlink{mouse_8cpp}{mouse.\+cpp}}\end{DoxyCompactItemize}

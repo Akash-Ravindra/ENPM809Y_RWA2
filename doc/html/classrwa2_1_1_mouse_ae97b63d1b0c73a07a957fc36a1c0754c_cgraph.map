@@ -1,0 +1,5 @@
+<map id="rwa2::Mouse::display_walls" name="rwa2::Mouse::display_walls">
+<area shape="rect" id="node1" title="This method visually sets the walls in the simulator." alt="" coords="5,23,165,65"/>
+<area shape="rect" id="node2" href="$classrwa2_1_1_node.html#a451e2b0b586fb8f76178b4f1caf43f7c" title="Get the cords object." alt="" coords="213,5,380,32"/>
+<area shape="rect" id="node3" href="$classrwa2_1_1_node.html#aeda53b5194d9eadfd8a77bbfe597b9cf" title="Return whether or not there is a wall in a cell." alt="" coords="222,56,371,83"/>
+</map>

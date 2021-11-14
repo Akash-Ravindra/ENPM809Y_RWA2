@@ -1,0 +1,4 @@
+<map id="rwa2::Mouse::maze_runner" name="rwa2::Mouse::maze_runner">
+<area shape="rect" id="node1" title="Used to run the mouse from home to goal based on the provided stack." alt="" coords="5,5,204,32"/>
+<area shape="rect" id="node2" href="$classrwa2_1_1_node.html#a451e2b0b586fb8f76178b4f1caf43f7c" title="Get the cords object." alt="" coords="252,5,419,32"/>
+</map>

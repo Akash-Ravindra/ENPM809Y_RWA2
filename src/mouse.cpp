@@ -199,8 +199,7 @@ void rwa2::Mouse::turn_left() // Turns the mouse left
           : direction::WEST; // Update the m_direction by -1 and handle rollover
   API::turnLeft();
 }
-void rwa2::Mouse::turn_right() 
-{
+void rwa2::Mouse::turn_right() {
   // Turns the mouse right
   m_direction =
       m_direction < 3
@@ -208,9 +207,7 @@ void rwa2::Mouse::turn_right()
           : direction::NORTH; // Update the m_direction by 1 and handle rollover
   API::turnRight();
 }
-void rwa2::Mouse::turn_until_direction(
-    direction heading) 
-{
+void rwa2::Mouse::turn_until_direction(direction heading) {
   // Turns the m_direction until it reaches the direction 'heading'
   // log(std::to_string(heading));// Prints the specified direction to turn
   // towards.
@@ -218,20 +215,20 @@ void rwa2::Mouse::turn_until_direction(
   if (heading ==
       m_direction) // if mouse direction is the same as specified direction
     return;
-  if ((heading - m_direction) < 0) // if heading is greater than mouse direction the turn left
+  if ((heading - m_direction) <
+      0) // if heading is greater than mouse direction the turn left
     turn_left();
-  else//else turn right
+  else // else turn right
     turn_right();
-    turn_until_direction(heading);
+  turn_until_direction(heading);
 }
-void rwa2::Mouse::flip_around() 
-{// Turns the mouse 180 degree
+void rwa2::Mouse::flip_around() { // Turns the mouse 180 degree
   turn_right();
   turn_right();
 }
 void rwa2::Mouse::move_forward() {
-  API::moveForward();// Moves the mouse forward
-} 
+  API::moveForward(); // Moves the mouse forward
+}
 void rwa2::Mouse::move_to(Node *start,
                           Node *end) // Moves the mouse backward
 {
@@ -254,10 +251,8 @@ void rwa2::Mouse::move_to(Node *start,
   turn_until_direction(heading);
   move_forward();
 }
-bool rwa2::Mouse::is_neighbor_visited(
-    Node *cn, direction h) 
-{
-  // Checks if the neighbor node is visited 
+bool rwa2::Mouse::is_neighbor_visited(Node *cn, direction h) {
+  // Checks if the neighbor node is visited
   int x{cn->get_cords().at(0)};
   int y{cn->get_cords().at(1)};
   switch (h) {
@@ -285,10 +280,9 @@ void rwa2::Mouse::reset_mouse() {
   // Resets the mouse in the sim and also the m_direction
   m_direction = direction::NORTH;
   API::ackReset();
-} 
+}
 
-void rwa2::Mouse::display_path() 
-{
+void rwa2::Mouse::display_path() {
   // Displays the final path found using DFS. Color is set to the path.
   std::stack<Node *> son{m_stack_of_nodes};
   if (son.empty())
@@ -302,23 +296,27 @@ void rwa2::Mouse::display_path()
 }
 
 void rwa2::Mouse::maze_runner(std::stack<Node *> maze_stack) {
-  //Used to run the mouse through the path that was discovered
+  // Used to run the mouse through the path that was discovered
   reset_mouse();
   std::vector<Node *> flippedStack = std::vector<Node *>();
   while (!maze_stack.empty()) {
     Node *d = maze_stack.top();
     flippedStack.push_back(d);
     maze_stack.pop();
-  }//Copy stack into vector to allow for backtracking from home position(flip the stack)
+  } // Copy stack into vector to allow for backtracking from home position(flip
+    // the stack)
 
   Node *Current_node = flippedStack.back();
-  flippedStack.pop_back();//Pop the home position off the stack
+  flippedStack.pop_back(); // Pop the home position off the stack
 
   while (!flippedStack.empty()) {
     API::setColor(Current_node->get_cords().at(0),
-                  Current_node->get_cords().at(1), 'G');//Set the color of the current node 
-    move_to(Current_node, flippedStack.back());//move to the next node based on the current node
-    Current_node = flippedStack.back();//update the current node
-    flippedStack.pop_back();//pop off the current node
+                  Current_node->get_cords().at(1),
+                  'G'); // Set the color of the current node
+    move_to(
+        Current_node,
+        flippedStack.back()); // move to the next node based on the current node
+    Current_node = flippedStack.back(); // update the current node
+    flippedStack.pop_back();            // pop off the current node
   }
 }

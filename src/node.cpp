@@ -10,17 +10,13 @@
  */
 #include "../include/node/node.h"
 
-void rwa2::Node::set_wall(
-    direction direction,
-    bool is_wall) // Sets the wall in the specified direction if there is a
-                  // preexisting wall
-{
+void rwa2::Node::set_wall(direction direction, bool is_wall) {
+  // Sets the wall in the specified direction based on input from simulator
   m_walls.at(direction) = is_wall;
 }
 
-bool rwa2::Node::is_wall(direction direction)
-    const // Checks if there is a wall in the specified 'directtion'
-{
+bool rwa2::Node::is_wall(direction direction) const {
+  // Checks if there is a wall in the specified 'directtion'
   return m_walls.at(direction);
 }
 

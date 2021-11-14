@@ -18,7 +18,8 @@ namespace rwa2 {
 /**
  * @brief Class to represent a node (cell) in a maze.
  *
- *A node is just a space delimited by 4 walls
+ *A node is just a space delimited by 4 walls, coordinated and its visited
+ *status
  *
  */
 class Node {

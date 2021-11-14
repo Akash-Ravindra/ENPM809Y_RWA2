@@ -16,16 +16,16 @@
  * - \subpage searchingPathPage "Searching a path"
  *
  * - \subpage followingPathPage "Following a path"
- *
  */
 
 /*! \page searchingPathPage Searching a path
  *
  * The search algorithm used for searching a path in a maze relies on
  * the depth-first search (DFS) approach. This algorithm is implemented in
- * rwa2::Mouse::search_maze()
+ * rwa2::Mouse::search_maze(Node *)
  *
  */
+
 
 /*! \page followingPathPage Following a path
  *
@@ -148,6 +148,7 @@ public:
    * @param gp
    */
   void set_goal_position(std::array<int, 2> gp) { m_goal_position = gp; }
+  void log(const std::string &text) { std::cerr << text << std::endl; }
 
 private:
   /**
@@ -155,7 +156,7 @@ private:
    * @details The function is used to display text on the maze application.
    * @param text
    */
-  void log(const std::string &text) { std::cerr << text << std::endl; }
+  // void log(const std::string &text) { std::cerr << text << std::endl; }
   /**
    * @brief Make the mouse move forward
    */

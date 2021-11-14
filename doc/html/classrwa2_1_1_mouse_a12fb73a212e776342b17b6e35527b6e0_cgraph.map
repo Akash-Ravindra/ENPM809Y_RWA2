@@ -1,0 +1,6 @@
+<map id="rwa2::Mouse::search_maze" name="rwa2::Mouse::search_maze">
+<area shape="rect" id="node1" title="Implement DFS to compute a path between 2 nodes in a maze." alt="" coords="5,56,204,83"/>
+<area shape="rect" id="node2" href="$classrwa2_1_1_node.html#a451e2b0b586fb8f76178b4f1caf43f7c" title="Get the cords object." alt="" coords="257,5,423,32"/>
+<area shape="rect" id="node3" href="$classrwa2_1_1_node.html#a8c4853e2f2f0be2380c7c47a8a76df99" title="Get the visited object." alt="" coords="252,56,428,83"/>
+<area shape="rect" id="node4" href="$classrwa2_1_1_node.html#ac0b3fe3da6db88993a6ac3dba9d47962" title="Set the visited object." alt="" coords="253,107,427,133"/>
+</map>

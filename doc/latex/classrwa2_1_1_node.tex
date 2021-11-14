@@ -1,5 +1,5 @@
-\hypertarget{classrwa2_1_1_node}{}\section{rwa2\+:\+:Node Class Reference}
-\label{classrwa2_1_1_node}\index{rwa2\+::\+Node@{rwa2\+::\+Node}}
+\hypertarget{classrwa2_1_1_node}{}\doxysection{rwa2\+::Node Class Reference}
+\label{classrwa2_1_1_node}\index{rwa2::Node@{rwa2::Node}}
 
 
 Class to represent a node (cell) in a maze.  
@@ -9,27 +9,38 @@ Class to represent a node (cell) in a maze.
 
 {\ttfamily \#include $<$node.\+h$>$}
 
-\subsection*{Public Member Functions}
+\doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{classrwa2_1_1_node_a9e887221d02616392f572dd4018b71ed}{set\+\_\+wall} (int \hyperlink{util_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}, bool \hyperlink{classrwa2_1_1_node_acd6ab64157b7b60bea708ddb52ddb1a8}{is\+\_\+wall})
+const std\+::array$<$ int, 2 $>$ \mbox{\hyperlink{classrwa2_1_1_node_a451e2b0b586fb8f76178b4f1caf43f7c}{get\+\_\+cords}} ()
+\begin{DoxyCompactList}\small\item\em Get the cords object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrwa2_1_1_node_aab8b92c4bd799c70807011c0a83c114c}{set\+\_\+cords}} (std\+::array$<$ int, 2 $>$ $\ast$new\+\_\+cords)
+\begin{DoxyCompactList}\small\item\em Set the cords object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classrwa2_1_1_node_a5c3ac46dbb14449ef8198b8028c9d9c4}\label{classrwa2_1_1_node_a5c3ac46dbb14449ef8198b8028c9d9c4}} 
+void {\bfseries set\+\_\+cords} (std\+::array$<$ int, 2 $>$ new\+\_\+cords)
+\item 
+const bool \mbox{\hyperlink{classrwa2_1_1_node_a8c4853e2f2f0be2380c7c47a8a76df99}{get\+\_\+visited}} ()
+\begin{DoxyCompactList}\small\item\em Get the visited object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrwa2_1_1_node_ac0b3fe3da6db88993a6ac3dba9d47962}{set\+\_\+visited}} (bool state)
+\begin{DoxyCompactList}\small\item\em Set the visited object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classrwa2_1_1_node_a018d23f2500308742777572363d5d21e}{set\+\_\+wall}} (\mbox{\hyperlink{util_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}} \mbox{\hyperlink{util_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}}, bool \mbox{\hyperlink{classrwa2_1_1_node_aeda53b5194d9eadfd8a77bbfe597b9cf}{is\+\_\+wall}})
 \begin{DoxyCompactList}\small\item\em Set the wall of a cell. \end{DoxyCompactList}\item 
-bool \hyperlink{classrwa2_1_1_node_acd6ab64157b7b60bea708ddb52ddb1a8}{is\+\_\+wall} (int \hyperlink{util_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}) const
+bool \mbox{\hyperlink{classrwa2_1_1_node_aeda53b5194d9eadfd8a77bbfe597b9cf}{is\+\_\+wall}} (\mbox{\hyperlink{util_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}} \mbox{\hyperlink{util_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}}) const
 \begin{DoxyCompactList}\small\item\em Return whether or not there is a wall in a cell. \end{DoxyCompactList}\item 
-int \hyperlink{classrwa2_1_1_node_a6057b0b97f6b815a57aad534cd021674}{compute\+\_\+number\+\_\+of\+\_\+walls} () const
+int \mbox{\hyperlink{classrwa2_1_1_node_a6057b0b97f6b815a57aad534cd021674}{compute\+\_\+number\+\_\+of\+\_\+walls}} () const
 \begin{DoxyCompactList}\small\item\em Compute the number of walls surrounding a node. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Class to represent a node (cell) in a maze. 
 
-A node is just a space delimited by 4 walls 
+A node is just a space delimited by 4 walls, coordinated and its visited status 
 
-\subsection{Member Function Documentation}
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{classrwa2_1_1_node_a6057b0b97f6b815a57aad534cd021674}\label{classrwa2_1_1_node_a6057b0b97f6b815a57aad534cd021674}} 
-\index{rwa2\+::\+Node@{rwa2\+::\+Node}!compute\+\_\+number\+\_\+of\+\_\+walls@{compute\+\_\+number\+\_\+of\+\_\+walls}}
-\index{compute\+\_\+number\+\_\+of\+\_\+walls@{compute\+\_\+number\+\_\+of\+\_\+walls}!rwa2\+::\+Node@{rwa2\+::\+Node}}
-\subsubsection{\texorpdfstring{compute\+\_\+number\+\_\+of\+\_\+walls()}{compute\_number\_of\_walls()}}
+\index{rwa2::Node@{rwa2::Node}!compute\_number\_of\_walls@{compute\_number\_of\_walls}}
+\index{compute\_number\_of\_walls@{compute\_number\_of\_walls}!rwa2::Node@{rwa2::Node}}
+\doxysubsubsection{\texorpdfstring{compute\_number\_of\_walls()}{compute\_number\_of\_walls()}}
 {\footnotesize\ttfamily int rwa2\+::\+Node\+::compute\+\_\+number\+\_\+of\+\_\+walls (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
@@ -39,18 +50,39 @@ Compute the number of walls surrounding a node.
 \begin{DoxyReturn}{Returns}
 int Number of walls surrounding a node 
 \end{DoxyReturn}
-Here is the call graph for this function\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=329pt]{classrwa2_1_1_node_a6057b0b97f6b815a57aad534cd021674_cgraph}
-\end{center}
-\end{figure}
-\mbox{\Hypertarget{classrwa2_1_1_node_acd6ab64157b7b60bea708ddb52ddb1a8}\label{classrwa2_1_1_node_acd6ab64157b7b60bea708ddb52ddb1a8}} 
-\index{rwa2\+::\+Node@{rwa2\+::\+Node}!is\+\_\+wall@{is\+\_\+wall}}
-\index{is\+\_\+wall@{is\+\_\+wall}!rwa2\+::\+Node@{rwa2\+::\+Node}}
-\subsubsection{\texorpdfstring{is\+\_\+wall()}{is\_wall()}}
-{\footnotesize\ttfamily bool rwa2\+::\+Node\+::is\+\_\+wall (\begin{DoxyParamCaption}\item[{int}]{direction }\end{DoxyParamCaption}) const}
+\mbox{\Hypertarget{classrwa2_1_1_node_a451e2b0b586fb8f76178b4f1caf43f7c}\label{classrwa2_1_1_node_a451e2b0b586fb8f76178b4f1caf43f7c}} 
+\index{rwa2::Node@{rwa2::Node}!get\_cords@{get\_cords}}
+\index{get\_cords@{get\_cords}!rwa2::Node@{rwa2::Node}}
+\doxysubsubsection{\texorpdfstring{get\_cords()}{get\_cords()}}
+{\footnotesize\ttfamily const std\+::array$<$int, 2$>$ rwa2\+::\+Node\+::get\+\_\+cords (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the cords object. 
+
+Gets the x,y of m\+\_\+coords \begin{DoxyReturn}{Returns}
+const std\+::array$<$int, 2$>$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrwa2_1_1_node_a8c4853e2f2f0be2380c7c47a8a76df99}\label{classrwa2_1_1_node_a8c4853e2f2f0be2380c7c47a8a76df99}} 
+\index{rwa2::Node@{rwa2::Node}!get\_visited@{get\_visited}}
+\index{get\_visited@{get\_visited}!rwa2::Node@{rwa2::Node}}
+\doxysubsubsection{\texorpdfstring{get\_visited()}{get\_visited()}}
+{\footnotesize\ttfamily const bool rwa2\+::\+Node\+::get\+\_\+visited (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the visited object. 
+
+Checks if the object is visited or not \begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classrwa2_1_1_node_aeda53b5194d9eadfd8a77bbfe597b9cf}\label{classrwa2_1_1_node_aeda53b5194d9eadfd8a77bbfe597b9cf}} 
+\index{rwa2::Node@{rwa2::Node}!is\_wall@{is\_wall}}
+\index{is\_wall@{is\_wall}!rwa2::Node@{rwa2::Node}}
+\doxysubsubsection{\texorpdfstring{is\_wall()}{is\_wall()}}
+{\footnotesize\ttfamily bool rwa2\+::\+Node\+::is\+\_\+wall (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{util_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}}}]{direction }\end{DoxyParamCaption}) const}
 
 
 
@@ -66,11 +98,41 @@ true There is a wall in the given direction in the cell
 
 false There is no wall in the given direction in the cell 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classrwa2_1_1_node_a9e887221d02616392f572dd4018b71ed}\label{classrwa2_1_1_node_a9e887221d02616392f572dd4018b71ed}} 
-\index{rwa2\+::\+Node@{rwa2\+::\+Node}!set\+\_\+wall@{set\+\_\+wall}}
-\index{set\+\_\+wall@{set\+\_\+wall}!rwa2\+::\+Node@{rwa2\+::\+Node}}
-\subsubsection{\texorpdfstring{set\+\_\+wall()}{set\_wall()}}
-{\footnotesize\ttfamily void rwa2\+::\+Node\+::set\+\_\+wall (\begin{DoxyParamCaption}\item[{int}]{direction,  }\item[{bool}]{is\+\_\+wall }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classrwa2_1_1_node_aab8b92c4bd799c70807011c0a83c114c}\label{classrwa2_1_1_node_aab8b92c4bd799c70807011c0a83c114c}} 
+\index{rwa2::Node@{rwa2::Node}!set\_cords@{set\_cords}}
+\index{set\_cords@{set\_cords}!rwa2::Node@{rwa2::Node}}
+\doxysubsubsection{\texorpdfstring{set\_cords()}{set\_cords()}}
+{\footnotesize\ttfamily void rwa2\+::\+Node\+::set\+\_\+cords (\begin{DoxyParamCaption}\item[{std\+::array$<$ int, 2 $>$ $\ast$}]{new\+\_\+cords }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the cords object. 
+
+Sets the x,y of new m\+\_\+cords 
+\begin{DoxyParams}{Parameters}
+{\em new\+\_\+cords} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrwa2_1_1_node_ac0b3fe3da6db88993a6ac3dba9d47962}\label{classrwa2_1_1_node_ac0b3fe3da6db88993a6ac3dba9d47962}} 
+\index{rwa2::Node@{rwa2::Node}!set\_visited@{set\_visited}}
+\index{set\_visited@{set\_visited}!rwa2::Node@{rwa2::Node}}
+\doxysubsubsection{\texorpdfstring{set\_visited()}{set\_visited()}}
+{\footnotesize\ttfamily void rwa2\+::\+Node\+::set\+\_\+visited (\begin{DoxyParamCaption}\item[{bool}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the visited object. 
+
+Sets if an object is visited as true; 
+\begin{DoxyParams}{Parameters}
+{\em state} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classrwa2_1_1_node_a018d23f2500308742777572363d5d21e}\label{classrwa2_1_1_node_a018d23f2500308742777572363d5d21e}} 
+\index{rwa2::Node@{rwa2::Node}!set\_wall@{set\_wall}}
+\index{set\_wall@{set\_wall}!rwa2::Node@{rwa2::Node}}
+\doxysubsubsection{\texorpdfstring{set\_wall()}{set\_wall()}}
+{\footnotesize\ttfamily void rwa2\+::\+Node\+::set\+\_\+wall (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{util_8h_a99f26e6ee9fcd62f75203b5402df8098}{direction}}}]{direction,  }\item[{bool}]{is\+\_\+wall }\end{DoxyParamCaption})}
 
 
 
@@ -83,16 +145,17 @@ Set the wall of a cell.
 {\em is\+\_\+wall} & true if there is a wall, otherwise false \\
 \hline
 \end{DoxyParams}
-Here is the call graph for this function\+:\nopagebreak
+Here is the call graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=328pt]{classrwa2_1_1_node_a9e887221d02616392f572dd4018b71ed_cgraph}
+\includegraphics[width=347pt]{classrwa2_1_1_node_a018d23f2500308742777572363d5d21e_cgraph}
 \end{center}
 \end{figure}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-include/node/\hyperlink{node_8h}{node.\+h}\item 
-src/node.\+cpp\end{DoxyCompactItemize}
+include/node/\mbox{\hyperlink{node_8h}{node.\+h}}\item 
+src/\mbox{\hyperlink{node_8cpp}{node.\+cpp}}\end{DoxyCompactItemize}
