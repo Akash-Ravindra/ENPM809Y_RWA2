@@ -19,11 +19,11 @@ void log(const std::string &text) { std::cerr << text << std::endl; }
 int main() {
   log("Running...");
   rwa2::Mouse mouse;
-  mouse.display_walls();
+  mouse.display_walls(NULL);
   mouse.reset_mouse();
   // mouse.move_forward();
   if(mouse.search_maze(mouse.get_home_node())){
-    mouse.display_walls();
+    mouse.display_walls(NULL);
     mouse.display_path();
   }
 }

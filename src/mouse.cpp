@@ -13,56 +13,71 @@
 #include <algorithm>
 #include <string>
 
-void rwa2::Mouse::display_walls()
+void rwa2::Mouse::display_walls(Node *currentNode)
 {
-  for (int x = 0; x < m_maze_width; x += 1)
+  if (currentNode != NULL)
   {
-    for (int y = 0; y < m_maze_height; y += 1)
+    if(currentNode->is_wall(direction::NORTH))
+      API::setWall(currentNode->get_cords().at(0),currentNode->get_cords().at(1),'n');
+    if(currentNode->is_wall(direction::EAST))
+      API::setWall(currentNode->get_cords().at(0),currentNode->get_cords().at(1),'e');
+    if(currentNode->is_wall(direction::SOUTH))
+      API::setWall(currentNode->get_cords().at(0),currentNode->get_cords().at(1),'s');
+    if(currentNode->is_wall(direction::WEST))
+      API::setWall(currentNode->get_cords().at(0),currentNode->get_cords().at(1),'w');
+
+  }
+  else
+  {
+    for (int x = 0; x < m_maze_width; x += 1)
     {
-      if (m_maze.at(x).at(y).get_visited()) //Color all non visited node with a diff color
+      for (int y = 0; y < m_maze_height; y += 1)
       {
-        if (m_maze.at(x).at(y).is_wall(direction::NORTH))
+        if (m_maze.at(x).at(y).get_visited()) //Color all non visited node with a diff color
         {
-          // display this wall in the simulator
-          API::setWall(x, y, 'n');
-        }
+          if (m_maze.at(x).at(y).is_wall(direction::NORTH))
+          {
+            // display this wall in the simulator
+            API::setWall(x, y, 'n');
+          }
 
-        if (m_maze.at(x).at(y).is_wall(direction::EAST))
-        {
-          // display this wall in the simulator
-          API::setWall(x, y, 'e');
-        }
+          if (m_maze.at(x).at(y).is_wall(direction::EAST))
+          {
+            // display this wall in the simulator
+            API::setWall(x, y, 'e');
+          }
 
-        if (m_maze.at(x).at(y).is_wall(direction::SOUTH))
-        {
-          // display this wall in the simulator
-          API::setWall(x, y, 's');
-        }
+          if (m_maze.at(x).at(y).is_wall(direction::SOUTH))
+          {
+            // display this wall in the simulator
+            API::setWall(x, y, 's');
+          }
 
-        if (m_maze.at(x).at(y).is_wall(direction::WEST))
-        {
-          // display this wall in the simulator
-          API::setWall(x, y, 'w');
+          if (m_maze.at(x).at(y).is_wall(direction::WEST))
+          {
+            // display this wall in the simulator
+            API::setWall(x, y, 'w');
+          }
+          // display the number of walls surrounding the current node
+          API::setText(
+              x, y, std::to_string(m_maze.at(x).at(y).compute_number_of_walls()));
+          //color All visited cells in blue
+          // API::setColor(x, y, 'b');
         }
-        // display the number of walls surrounding the current node
-        API::setText(
-            x, y, std::to_string(m_maze.at(x).at(y).compute_number_of_walls()));
-        //color All visited cells in blue
-        API::setColor(x, y, 'b');
       }
     }
   }
 }
 bool rwa2::Mouse::search_maze(Node *current_node)
 {
-  //Coordinated of the current node
+  //Coordinates of the current node
   int x{current_node->get_cords().at(0)};
   int y{current_node->get_cords().at(1)};
-  //coordinated of the next node
-  std::array<int, 2> next_node{{0,0}};
+  //coordinates of the next node
+  std::array<int, 2> next_node{{0, 0}};
 
   //If current node is not the goal
-  if (!((x == 7 || x == 8) && (y == 7 || y == 8)))
+  if (!((m_goal_position.at(0)==x)&&(m_goal_position.at(1)==y)))
   {
     if (m_stack_of_nodes.empty())
       m_stack_of_nodes.push(current_node);
@@ -75,16 +90,17 @@ bool rwa2::Mouse::search_maze(Node *current_node)
 
   //Check if this node is in the list
   if (!current_node->get_visited())
-  {//then check if vector to see.. UNECESSARY BUT KEPT
+  { //then check if vector to see.. UNECESSARY BUT KEPT
     if (!(std::find(m_list_of_nodes.begin(), m_list_of_nodes.end(),
                     current_node->get_cords()) != m_list_of_nodes.end()))
     {
       // log("First Visit");
-      m_list_of_nodes.push_back(current_node->get_cords());// Add to vector
-      look_around(current_node);//Find all surrounding walls
+      m_list_of_nodes.push_back(current_node->get_cords()); // Add to vector
+      look_around(current_node);                            //Find all surrounding walls
       current_node->set_visited(true);
     }
   }
+  display_walls(current_node);
   //Check if it can go NORTH based on wall and visited
   if (!m_maze.at(x).at(y).is_wall(direction::NORTH) &&
       !is_neighbor_visited(current_node, direction::NORTH))
@@ -92,7 +108,7 @@ bool rwa2::Mouse::search_maze(Node *current_node)
     //SET next Node and move forward
     log("Going North");
     next_node = {x, y + 1};
-    if (m_stack_of_nodes.top() != current_node)//To prevent double addition of junction nodes
+    if (m_stack_of_nodes.top() != current_node) //To prevent double addition of junction nodes
       m_stack_of_nodes.push(current_node);
     turn_until_direction(direction::NORTH);
     move_forward();
@@ -132,11 +148,11 @@ bool rwa2::Mouse::search_maze(Node *current_node)
   }
   //The node is a deadend
   else
-  {//check if you can backtrack
+  { //check if you can backtrack
     if (!m_stack_of_nodes.empty())
     {
       log("No Path");
-      if (m_stack_of_nodes.top() == current_node)//make double removal cuz of deadends
+      if (m_stack_of_nodes.top() == current_node) //make double removal cuz of deadends
         m_stack_of_nodes.pop();
       next_node = m_stack_of_nodes.top()->get_cords();
       move_backward(current_node, m_stack_of_nodes.top());
@@ -160,36 +176,36 @@ void rwa2::Mouse::look_around(Node *cn)
   cn->set_wall(m_look_up_table.at(m_direction).at(3), API::wallLeft());
   cn->set_wall(m_look_up_table.at(m_direction).at(2), false);
 }
-void rwa2::Mouse::turn_left()
+void rwa2::Mouse::turn_left()//Turns the mouse left
 {
   m_direction = m_direction > 0 ? m_direction -= 1 : direction::WEST;
   API::turnLeft();
 }
-void rwa2::Mouse::turn_right()
+void rwa2::Mouse::turn_right()//Turns the mouse right
 {
   m_direction = m_direction < 3 ? m_direction += 1 : direction::NORTH;
   API::turnRight();
 }
-void rwa2::Mouse::turn_until_direction(direction heading)
+void rwa2::Mouse::turn_until_direction(direction heading)//Turns the m_direction until it reaches the direction 'heading'
 {
-  log(std::to_string(heading));
+  log(std::to_string(heading));// Prints the specified direction to turn towards.
   // log(std::to_string(m_direction));
-  if (heading == m_direction)
+  if (heading == m_direction)// if mouse direction is the same as specified direction
     return;
-  if ((heading - m_direction) < 0)
+  if ((heading - m_direction) < 0)// if mouse direction is not the 
     turn_left();
   else
     turn_right();
   if (heading != m_direction)
     turn_until_direction(heading);
 }
-void rwa2::Mouse::flip_around()
+void rwa2::Mouse::flip_around()// Turns the mouse 180 degree 
 {
   turn_right();
   turn_right();
 }
-void rwa2::Mouse::move_forward() { API::moveForward(); }
-void rwa2::Mouse::move_backward(Node *start, Node *end)
+void rwa2::Mouse::move_forward() { API::moveForward(); }// Moves the mouse forward
+void rwa2::Mouse::move_backward(Node *start, Node *end)// Moves the mouse backward
 {
   direction heading;
   log(std::to_string(start->get_cords().at(0)) + "," +
@@ -207,30 +223,30 @@ void rwa2::Mouse::move_backward(Node *start, Node *end)
   turn_until_direction(heading);
   move_forward();
 }
-bool rwa2::Mouse::is_neighbor_visited(Node *cn, direction h)
+bool rwa2::Mouse::is_neighbor_visited(Node *cn, direction h)// Checks if the neighbor node is visited 
 {
   int x{cn->get_cords().at(0)};
   int y{cn->get_cords().at(1)};
   switch (h)
   {
   case 0: // North
-    return {m_maze.at(x).at(y + 1).get_visited()};
+    return {m_maze.at(x).at(y + 1).get_visited()};//Checks north neighbour node
     break;
   case 1: // East
-    return {m_maze.at(x + 1).at(y).get_visited()};
+    return {m_maze.at(x + 1).at(y).get_visited()};//Checks east neighbour node
     break;
   case 2: // South
-    return {m_maze.at(x).at(y - 1).get_visited()};
+    return {m_maze.at(x).at(y - 1).get_visited()};//Checks south neighbour node
     break;
   case 3: // West
-    return {m_maze.at(x - 1).at(y).get_visited()};
+    return {m_maze.at(x - 1).at(y).get_visited()};//Checks west neighbour node
     break;
   default:
-    return {m_maze.at(x).at(y).get_visited()};
+    return {m_maze.at(x).at(y).get_visited()};//Checks if current node is visited
     break;
   }
 }
-void rwa2::Mouse::reset_mouse() { API::ackReset(); }
+void rwa2::Mouse::reset_mouse() { API::ackReset(); }//Resets the mouse 
 std::array<int, 2> rwa2::Mouse::my_neighbor_cords(std::array<int, 2> cords,
                                                   direction heading)
 {
@@ -253,7 +269,7 @@ std::array<int, 2> rwa2::Mouse::my_neighbor_cords(std::array<int, 2> cords,
     break;
   }
 }
-void rwa2::Mouse::display_path()
+void rwa2::Mouse::display_path()// Displays the path taken by the mouse. Color is set to the path.
 {
   if (m_stack_of_nodes.empty())
     return;
@@ -262,4 +278,9 @@ void rwa2::Mouse::display_path()
     API::setColor(m_stack_of_nodes.top()->get_cords().at(0), m_stack_of_nodes.top()->get_cords().at(1), 'g');
     m_stack_of_nodes.pop();
   }
+}
+
+void run_maze(std::stack<Node*> maze_stack)
+{
+
 }
